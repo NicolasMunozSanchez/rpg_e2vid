@@ -9,6 +9,7 @@ from utils.timers import Timer
 import time
 from image_reconstructor import ImageReconstructor
 from options.inference_options import set_inference_options
+from pathlib import Path
 
 
 if __name__ == "__main__":
@@ -35,6 +36,7 @@ if __name__ == "__main__":
     set_inference_options(parser)
 
     args = parser.parse_args()
+    args.dataset_name = Path(args.input_file).stem[-5:]
 
     # Read sensor size from the first first line of the event file
     path_to_events = args.input_file

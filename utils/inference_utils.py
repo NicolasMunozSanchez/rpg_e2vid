@@ -2,6 +2,7 @@ from .util import robust_min, robust_max
 from .path_utils import ensure_dir
 from .timers import Timer, CudaTimer
 from .loading_utils import get_device
+import os
 from os.path import join
 from math import ceil, floor
 from torch.nn import ReflectionPad2d
@@ -191,8 +192,12 @@ class ImageWriter:
             cv2.imwrite(join(self.event_previews_folder,
                              'events_{:010d}.png'.format(event_tensor_id)), event_preview)
 
-        cv2.imwrite(join(self.output_folder, self.dataset_name,
-                         'frame_{:010d}.png'.format(event_tensor_id)), img)
+        #cv2.imwrite(join(self.output_folder, self.dataset_name, 'e2vid',
+        #                 '{:08d}.png'.format(event_tensor_id)), img)
+        output_path = join(self.output_folder, self.dataset_name, 'e2vid')
+        os.makedirs(output_path, exist_ok=True)
+        cv2.imwrite(join(output_path, '{:08d}.png'.format(event_tensor_id)), img)
+        
         if stamp is not None:
             self.timestamps_file.write('{:.18f}\n'.format(stamp))
 
