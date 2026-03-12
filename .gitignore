@@ -1,0 +1,8 @@
+__pycache__/
+base/__pycache__/
+data/dynamic_6dof.zip
+model/__pycache__/
+options/__pycache__/
+pretrained/E2VID_lightweight.pth.tar
+reconstrucciones/
+utils/__pycache__/
